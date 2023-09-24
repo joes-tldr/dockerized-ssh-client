@@ -2,6 +2,10 @@
 
 Ref: https://man7.org/linux/man-pages/man1/ssh.1.html
 
+DockerHub: https://hub.docker.com/r/joestldr/ssh-client
+
+GitHub: https://github.com/joes-tldr/dockerized-ssh-client
+
 ## TLDR; Sample usage: UDP proxy over TCP
 
 ### Interactive:
