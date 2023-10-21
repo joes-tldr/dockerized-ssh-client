@@ -14,7 +14,7 @@ GitHub: https://github.com/joestldr/dockerized-ssh-client
 $ docker run \
     --name joestldr-ssh \
     --interactive --tty --rm \
-  joestldr/ssh:v1.0.0 \
+  joestldr/ssh-client:latest \
     root@10.0.1.1
 ```
 
@@ -25,7 +25,7 @@ $ docker run \
     --name joestldr-ssh \
     --interactive --tty --rm \
     --volume /home/user/.ssh:/ssh \
-  joestldr/ssh:v1.0.0 \
+  joestldr/ssh-client:latest \
     root@10.0.1.1
 ```
 
@@ -39,12 +39,33 @@ $ docker run \
     --volume /home/user/.ssh:/ssh \
     --publish 0.0.0.0:22222:22222 \
     --publish 0.0.0.0:10080:10080 \
-  joestldr/ssh:v1.0.0 \
+  joestldr/ssh-client:latest \
     -vNT4 \
     -L 0.0.0.0:22222:192.168.56.99:22 \
     -D 0.0.0.0:10080 \
     root@10.0.1.1
 ```
+
+## Password instead of ssh-keys
+
+NOT RECOMMENDED but if you really want, just set `SSH_PASSWORD` environment variable with your password:
+```bash
+$ docker run \
+    --name joestldr-ssh \
+    --interactive --tty --rm \
+    --env SSH_PASSWORD=THIS_IS_YOUR_PASSWORD \
+  joestldr/ssh-client:latest \
+    root@10.0.1.1
+```
+
+## Some environment variables to play around with
+
+| Variable | Default Value | Description |
+| -------- | ------------- | ----------- |
+| `SSH_PASSWORD` | *not set* | Self-explanatory |
+| `DELAY_START` | `3` | Self-explanatory |
+| `DELAY_RETRY` | `3` or `${DELAY_START}` | Self-explanatory |
+| `MAX_RETRY` | `3` | Self-explanatory |
 
 # License
 
