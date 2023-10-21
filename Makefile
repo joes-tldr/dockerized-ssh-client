@@ -17,9 +17,10 @@ push: build
 	fi
 
 save: build
-	@rm -rf images
-	@mkdir images
-	@docker save $(IMAGE) | pigz -9 > ./images/$(IMAGE_REPO)-$(IMAGE_NAME)-$(IMAGE_TAG).tar.gz
+	@rm -rf out
+	@mkdir out
+	@docker save $(IMAGE) | pigz -9 > ./out/$(IMAGE_REPO)-$(IMAGE_NAME)-$(IMAGE_TAG).tar.gz
+	@cd out; sha256sum $(IMAGE_REPO)-$(IMAGE_NAME)-$(IMAGE_TAG).tar.gz > $(IMAGE_REPO)-$(IMAGE_NAME)-$(IMAGE_TAG).tar.gz.sha256sum
 
 jenkins: build push save
 
